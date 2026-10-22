@@ -135,7 +135,7 @@ export const ThirdPartyListComponent: FC<{ reload: () => void }> = (props) => {
   );
 
   return (
-    <div className="grid grid-cols-4 tablet:grid-cols-3 mobile:!grid-cols-2 gap-[10px] justify-items-center justify-center">
+    <div className="grid grid-cols-1 sm:grid-cols-2 tablet:grid-cols-3 xl:grid-cols-4 gap-[10px] justify-items-center justify-center">
       {data?.map((p: any) => (
         <div
           onClick={
