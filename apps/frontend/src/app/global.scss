@@ -847,8 +847,23 @@ html[dir='rtl'] [dir='ltr'] {
 }
 
 .w8-max {
-  width: calc(100% / 6);
-  max-width: calc(100% / 6);
+  width: 50%;
+  max-width: 50%;
+
+  @media (min-width: 480px) {
+    width: 33.33%;
+    max-width: 33.33%;
+  }
+
+  @media (min-width: 768px) {
+    width: 25%;
+    max-width: 25%;
+  }
+
+  @media (min-width: 1024px) {
+    width: calc(100% / 6);
+    max-width: calc(100% / 6);
+  }
 }
 
 .withp3 {
@@ -869,4 +884,245 @@ html[dir='rtl'] [dir='ltr'] {
 /* Preview page: text that can be selected to leave an inline comment */
 .preview-comment-cursor {
   cursor: url("data:image/svg+xml,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%2228%22 height%3D%2228%22 viewBox%3D%220 0 28 28%22%3E%3Cg fill%3D%22none%22 stroke-linecap%3D%22round%22 stroke-linejoin%3D%22round%22%3E%3Cpath d%3D%22M3 4h6M3 24h6M6 4v20%22 stroke%3D%22%23fff%22 stroke-width%3D%224%22%2F%3E%3Cpath d%3D%22M3 4h6M3 24h6M6 4v20%22 stroke%3D%22%23000%22 stroke-width%3D%221.6%22%2F%3E%3Cpath d%3D%22M14 4h10a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-6l-4 3v-3a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z%22 fill%3D%22%23612bd3%22 stroke%3D%22%23fff%22 stroke-width%3D%221.5%22%2F%3E%3Cpath d%3D%22M17 8h6M17 11h4%22 stroke%3D%22%23fff%22 stroke-width%3D%221.5%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") 6 14, text;
+}
+
+// ==========================================
+// RESPONSIVE IMPROVEMENTS
+// ==========================================
+
+// Grid responsive for all screens
+.grid {
+  width: 100%;
+
+  @media (max-width: 1024px) {
+    grid-auto-flow: dense;
+  }
+}
+
+// Calendar responsive (Month View)
+.grid-cols-7 {
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, minmax(140px, 1fr));
+    overflow-x: auto;
+  }
+}
+
+// Modal responsive
+.swal2-modal {
+  @media (max-width: 1024px) {
+    max-width: 95vw !important;
+    margin: 0 auto !important;
+  }
+
+  @media (max-width: 768px) {
+    max-width: 100vw !important;
+    border-radius: 0 !important;
+    height: auto !important;
+    min-height: 80vh !important;
+  }
+}
+
+// Scrollable containers responsive
+.scrollbar {
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+
+    @media (max-width: 768px) {
+      width: 6px;
+      height: 6px;
+    }
+  }
+}
+
+// Button responsive
+button,
+[role="button"] {
+  transition: all 0.2s ease-in-out;
+
+  @media (hover: none) {
+    // Mobile devices without hover
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+}
+
+// Input and form responsive
+input,
+textarea,
+select {
+  font-size: 16px; // Prevent zoom on iOS
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+
+  @media (max-width: 640px) {
+    font-size: 16px; // Keep 16px on mobile for iOS
+  }
+}
+
+// Flex containers responsive helper
+.flex-mobile-wrap {
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+  }
+}
+
+// Tables responsive
+.table1 {
+  @media (max-width: 768px) {
+    display: block;
+    border: none;
+
+    thead {
+      display: none;
+    }
+
+    tbody {
+      display: block;
+
+      td {
+        display: block;
+        padding: 8px 0;
+        text-align: left;
+
+        &:before {
+          content: attr(data-label);
+          font-weight: bold;
+          display: inline-block;
+          width: 120px;
+          margin-right: 8px;
+        }
+      }
+    }
+
+    tr {
+      display: block;
+      margin-bottom: 16px;
+      border: 1px solid var(--color-table-border);
+      border-radius: 4px;
+      padding: 8px;
+    }
+  }
+}
+
+// Vertical stacking on mobile
+@media (max-width: 768px) {
+  .flex-col-mobile {
+    flex-direction: column;
+  }
+
+  .gap-mobile {
+    gap: 12px;
+  }
+}
+
+// Touch-friendly spacing
+@media (hover: none) {
+  // Increase tap target size on mobile
+  button,
+  [role="button"],
+  a,
+  input[type="checkbox"],
+  input[type="radio"] {
+    min-height: 44px;
+    min-width: 44px;
+    padding: max(8px, calc((44px - 1em) / 2)) 12px;
+  }
+}
+
+// Overflow handling
+.overflow-x-auto {
+  -webkit-overflow-scrolling: touch;
+
+  @media (max-width: 768px) {
+    // Ensure proper overflow on mobile
+    max-width: 100vw;
+    margin-left: -12px;
+    margin-right: -12px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
+// Text responsiveness refinements
+h1,
+h2,
+h3 {
+  letter-spacing: -0.02em;
+
+  @media (max-width: 768px) {
+    margin-bottom: 0.5rem;
+  }
+}
+
+// Calendar view responsive
+.absolute {
+  &.bottom-\[100\%\] {
+    @media (max-width: 768px) {
+      bottom: auto !important;
+      top: 100% !important;
+    }
+  }
+}
+
+// Prevent layout shift on scrollbar
+html {
+  scrollbar-gutter: stable;
+}
+
+// Disable zoom on iOS for input focus
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+  font-size: 16px !important;
+
+  @media (max-width: 640px) {
+    font-size: 16px !important; // Prevent zoom
+  }
+}
+
+// Scrollable with proper mobile support
+.scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-fifth) var(--new-bgColor);
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--new-bgColor);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--color-fifth);
+    border-radius: 4px;
+
+    &:hover {
+      background: var(--color-sixth);
+    }
+  }
+}
+
+// Calendar week grid responsive
+.calendar-week-grid {
+  display: grid;
+  grid-template-columns: 80px repeat(7, minmax(150px, 1fr));
+
+  @media (min-width: 768px) {
+    grid-template-columns: 100px repeat(7, minmax(0, 1fr));
+  }
+
+  @media (min-width: 1280px) {
+    grid-template-columns: 136px repeat(7, minmax(0, 1fr));
+  }
 }

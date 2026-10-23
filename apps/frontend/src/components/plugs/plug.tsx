@@ -194,17 +194,18 @@ export const PlugItem: FC<{
     },
     [activated]
   );
+  const t = useT();
   return (
     <div
       onClick={() => addPlug(data)}
       key={plug.title}
-      className="w-full h-[300px] mobile:h-auto rounded-[8px] bg-newTableHeader hover:bg-newTableBorder"
+      className="w-full min-h-[220px] md:h-[280px] rounded-[12px] bg-newTableHeader hover:bg-newTableBorder transition-all cursor-pointer overflow-hidden flex flex-col"
     >
-      <div key={plug.title} className="p-[16px] h-full flex flex-col flex-1 mobile:gap-[16px]">
-        <div className="flex">
-          <div className="text-[20px] mb-[8px] flex-1">{plug.title}</div>
+      <div key={plug.title} className="p-[20px] h-full flex flex-col flex-1 gap-[12px]">
+        <div className="flex items-start justify-between">
+          <div className="text-[18px] md:text-[20px] flex-1 font-[600] leading-tight">{plug.title}</div>
           {!!data && (
-            <div onClick={(e) => e.stopPropagation()}>
+            <div onClick={(e) => e.stopPropagation()} className="shrink-0 scale-90 md:scale-100 origin-right">
               <Slider
                 value={activated ? 'on' : 'off'}
                 onChange={changeActivated}
@@ -213,8 +214,12 @@ export const PlugItem: FC<{
             </div>
           )}
         </div>
-        <div className="flex-1">{plug.description}</div>
-        <Button>{!data ? 'Set Plug' : 'Edit Plug'}</Button>
+        <div className="flex-1 text-[14px] md:text-[15px] text-textItemBlur line-clamp-4 md:line-clamp-none">
+          {plug.description}
+        </div>
+        <div className="mt-auto">
+          <Button className="w-full md:w-auto">{!data ? t('set_plug', 'Set Plug') : t('edit_plug', 'Edit Plug')}</Button>
+        </div>
       </div>
     </div>
   );

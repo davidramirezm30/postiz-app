@@ -293,7 +293,7 @@ export const DatePicker: FC<{
       onClick={onOpen || changeShow}
       ref={ref}
     >
-      <div className="cursor-pointer">
+      <div className="cursor-pointer flex-shrink-0">
         <CalendarIcon />
       </div>
       <div className="cursor-pointer mobile:hidden">
@@ -305,10 +305,10 @@ export const DatePicker: FC<{
       {open && (
         <div
           onClick={(e) => e.stopPropagation()}
-          className="animate-fadeIn absolute bottom-[100%] mb-[16px] start-[50%] -translate-x-[50%] bg-sixth border border-tableBorder text-textColor rounded-[16px] z-[300] p-[16px] flex flex-col"
+          className="animate-fadeIn absolute bottom-[100%] md:bottom-auto md:top-[100%] mb-[16px] md:mt-[16px] start-[50%] md:start-auto md:end-0 md:translate-x-0 -translate-x-[50%] bg-sixth border border-tableBorder text-textColor rounded-[16px] z-[300] p-[16px] flex flex-col max-w-[90vw] md:max-w-[400px] w-[calc(100vw-32px)] md:w-auto"
         >
           <DatePickerPanel date={date} onChange={onChange} />
-          <Button className="mt-[12px]" onClick={changeShow}>
+          <Button className="mt-[12px] w-full" onClick={changeShow}>
             {t('close', 'Close')}
           </Button>
         </div>
