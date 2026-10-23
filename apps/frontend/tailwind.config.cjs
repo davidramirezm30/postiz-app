@@ -297,7 +297,6 @@ module.exports = {
   },
   plugins: [
     require('tailwind-scrollbar'),
-    require('tailwind-scrollbar-hide'),
     require('tailwindcss-rtl'),
     function ({ addVariant }) {
       addVariant('child', '& > *');
